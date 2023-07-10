@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} Beranda {% endblock %}
+{% block nav_item_index %} active {% endblock %}
+{% block content %}
+
+<main class="container">
+    <div class="small-box p-4 p-md-5 mb-4 text-white rounded bg-primary">
+        <div class="col-md-6 px-0">
+            <h1 class="display-5 fst-italic">Halo {{session.username}}!</h1>
+        </div>
+        <div class="icon">
+            <i class="ion-android-bulb"></i>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6 pr-md-3">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-warning">Cara Penggunaan</strong>
+                    <h3 class="mb-0">Tutorial Penggunaan</h3>
+                    <p class="card-text mb-auto">Tutorial adalah langkah-langkah membantu kita terampil dalam suatu bidang sehingga dapat melakukan sesuatu dengan baik.</p>
+                    <a href="/info" class="stretched-link text-warning">TUTORIAL</a>
+                </div>
+                <div class="col-auto d-lg-block">
+                    <img src="/static/dist/img/kehidupan.png" height="250">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pl-md-3">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-danger">Forum Diskusi</strong>
+                    <h3 class="mb-0">Tanya dan Jawab</h3>
+                    <p class="mb-auto">Bertanya kepada guru dan siswa lain mengenai materi
+                        pembelajaran yang Anda pelajari. Jawab pertanyaan </p>
+                    <a href="/forum" class="stretched-link text-danger">QUIZ</a>
+                </div>
+                <div class="col-auto d-lg-block">
+                    <img src="/static/dist/img/group.png" height="250">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6 pr-md-3">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Materi Pembelajaran</strong>
+                    <h3 class="mb-0">Belajar Hal Baru</h3>
+                    <p class="card-text mb-auto">Belajar akan lebih ringan jika kita anggap sebagai upaya mengamalkan
+                        suatu ibadah yaitu menuntut ilmu.</p>
+                    <a href="/materi"  class="stretched-link">BELAJAR</a>
+                </div>
+                <div class="col-auto d-lg-block">
+                    <img src="/static/dist/img/discovery.png" height="250">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pl-md-3">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success">Lakukan Kuis</strong>
+                    <h3 class="mb-0">Belajar dan Berlatih</h3>
+                    <p class="mb-auto">Setelah melakukan sesuatu pembelajaran siswa mengerjakan quiz untuk mengetahui
+                        tingkat pemahaman mereka.</p>
+                    <a href="/quiz" class="stretched-link text-success">QUIZ</a>
+                </div>
+                <div class="col-auto d-lg-block">
+                    <img src="/static/dist/img/tes.png" height="250">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% block chart %} {% endblock %}
+{% endblock %}

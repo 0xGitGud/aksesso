@@ -1,0 +1,68 @@
+{% if current_user.is_authenticated and current_user.type == 'admin' %}
+{% extends 'basemin.html' %}
+{% else %}
+{% extends 'base.html' %}
+{% endif %}
+{% block title %} Akun {% endblock %}
+{% block nav_item_profil %} active {% endblock %}
+{% block content %}
+
+<main class="container mt-5">
+    <div class="position-relative overflow-hidden text-center">
+        <div class="card col-md-5 p-lg-5 mx-auto my-5">
+            <br>
+            <h1 class="display-5 fw-normal">
+                <span class="editable">Profil Anda</span>
+            </h1>
+            <div class="picture text-center">
+                {% if current_user.profile_picture %}
+                <img src="{{ url_for('static', filename='thumbnail/' + current_user.profile_picture) }}" alt="User Avatar" width="150" height="150" class="img-size-150 img-circle">
+                {% else %}
+                <img src="../static/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-150 img-circle">
+                {% endif %}
+            </div>
+            <br>
+            <form method="POST" action="{{ url_for('profil_picture') }}" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="foto" name="profile_picture">
+                        <label class="custom-file-label" for="foto">Pilih foto baru</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit"><i class="far fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <form method="POST" action="{{ url_for('profil') }}">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" class="form-control" value="{{ current_user.name }}">
+                    <button type="submit" class="btn btn-outline-primary">Ubah Nama</button>
+                </div>
+            </form>
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.getElementById('foto').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        var label = document.querySelector('label[for="foto"]');
+        label.textContent = fileName;
+    });
+
+
+</script>
+
+{% block chart %} {% endblock %}
+{% endblock %}

@@ -1,0 +1,114 @@
+{% if current_user.is_authenticated and current_user.type == 'admin' %}
+{% extends 'basemin.html' %}
+{% else %}
+{% extends 'base.html' %}
+{% endif %}
+<title>{% block title %}Materi{% endblock %}</title>
+{% block nav_item_materi %} active {% endblock %}
+{% block content %}
+
+<head>
+    <style>
+    .card-content {
+      font-size: 18px;
+      white-space: pre-wrap;
+      text-align: justify;
+    }
+
+    .zoomable {
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+.zoomable:hover {
+  transform: scale(1.35);
+}
+
+    @media screen and (max-width: 768px) {
+      .card-content {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      .card-content {
+        padding-left: 130px;
+        padding-right: 130px;
+      }
+
+      .zoomable {
+      width: 700px;
+      height: 350px;
+      object-fit: contain;
+      }
+    }
+
+
+
+    </style>
+</head>
+
+<main class="container">
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><strong>{{ post.title }}</strong></h3>
+            <div class="card-tools">
+                {% if prev_post and prev_post.chapter == post.chapter %}
+                <a href="{{ url_for('belajar', id=prev_post.id) }}" class="btn btn-tool" title="Previous">
+                    <i class="fas fa-arrow-left" style="font-size: 24px; color: green;"></i>
+                </a>
+                {% endif %}
+
+                {% if next_post and next_post.chapter == post.chapter %}
+                <a href="{{ url_for('belajar', id=next_post.id) }}" class="btn btn-tool" title="Next">
+                    <i class="fas fa-arrow-right" style="font-size: 24px; color: green;"></i>
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="card-body text-center">
+            {% if post.thumbnail %}
+            <img class="zoomable" src="{{ url_for('static', filename='thumbnail/' + post.thumbnail) }}"
+                 alt="{{ post.title }}" style="border: 1px grey;" width="75%" height="75%"/>
+            {% else %}
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c"></rect>
+                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+            </svg>
+            {% endif %}
+        </div>
+
+        <div class="card-content" style="font-size: 18px; white-space: pre-wrap; text-align: justify;">
+            <br>{{ post.content }}
+        </div>
+        <br>
+        <br>
+
+        <div class="card-header">
+            <div class="card-header">
+                <h5 class="card-title">Attachment</h5>
+            </div>
+            <div class="card-body text-center" >
+                {% for attachment in post.attachments %}
+                <a href="{{ url_for('attachment', id=attachment.id) }}" class="btn btn-primary"
+                   style="margin-right: 5px; max-width: 100%;">{{ attachment.file_name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="card-footer">
+            <small class="text-muted">{{ post.date_created }}</small>
+        </div>
+    </div>
+
+</main>
+
+{% block chart %} {% endblock %}
+{% endblock %}

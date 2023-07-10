@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %} Quiz {% endblock %}
+{% block nav_item_quiz %} active {% endblock %}
+{% block content %}
+
+{% block head %}
+<style>
+
+  @media only screen and (max-width: 600px) {
+    .card-img-overlay {
+      height: 50%;
+    }
+    .card {
+    max-height: none;
+    position: unset;
+  }
+}
+  }
+
+
+
+
+</style>
+{% endblock %}
+
+<main class="container mt-5">
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center mt-5">
+        {% if user.scores is not none %}
+        {% if user.scores|float >= 70 %}
+        <div class="card card-outline card-primary">
+            {% else %}
+            <div class="card card-outline card-warning">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="display-4 fw-normal">NILAI ANDA {{ user.scores|float|round(2) }}</h1>
+                    {% if user.scores|float >= 70 %}
+                    <p class="lead fw-normal">Anda mendapatkan nilai diatas KKM!</p>
+                    <div class="img">
+                        <img src="/static/dist/img/congratulation.jpg" style="width:100%">
+                    </div>
+                    {% else %}
+                    <p class="lead fw-normal">Maaf, Anda belum mendapatkan nilai diatas KKM!</p>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Question</th>
+                            <th scope="col"><i class="fas fa-equals"></i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for result in session['results'] %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ result[0] }}</td>
+                            <td>{% if result[1] == result[2] %}<i class="fas fa-check" style="color: green;"></i>
+                                {% else %}<i class="fas fa-times" style="color: red;"></i>{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card mx-auto" style="max-width: 800px; max-height: 500px;">
+            <div class="card col-md-5 p-lg-5 mx-auto my-5">
+                <h1 class="display-4 fw-normal">Mulai Quiz</h1>
+                <p class="lead fw-normal">Lakukan uji kemampuan sebagai penilaian setelah melakukan pembelajaran
+                    yang telah Anda
+                    lakukan.</p>
+                <a class="btn btn-outline-primary" href="/mulai">START</a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+</main>
+
+{% block chart %} {% endblock %}
+{% endblock %}

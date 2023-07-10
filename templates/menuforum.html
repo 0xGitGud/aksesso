@@ -1,0 +1,33 @@
+{% extends 'basemin.html' %}
+{% block title %} Menu Forum {% endblock %}
+{% block nav_item_forum %} active {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+    <div class="row align-items-md-stretch">
+      <div class="card card-outline card-danger p-4 p-md-5 mb-4">
+        <div class="col-md-6 px-0">
+          <h2>Tambah Posting</h2>
+          <p>Gunakan fitur ini untuk menambahkan materi baru. Materi pembelajaran dapat dirancang secara sekuensial agar lebih menarik dan memiliki beberapa cabang dan memiliki gambar yang saling berhubungan.</p>
+          <a class="btn btn-primary" href="/postingadd">Tambah</a>
+        </div>
+      </div>
+      <div class="card card-outline card-danger p-4 p-md-5 mb-4">
+        <div class="col-md-6 px-0">
+          <h2>Akses Forum</h2>
+          <p>Materi yang telah diposting akan tampil pada fitur ini dengan opsi pratinjau, penyuntingan, dan penghapusan. Gunakan dengan mudah dan terstruktur untuk membuat materi yang baik. </p>
+          <a class="btn btn-primary" href="/forum">Tampilkan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% block chart %} {% endblock %}
+{% endblock %}

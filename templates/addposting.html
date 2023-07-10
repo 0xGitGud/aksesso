@@ -1,0 +1,33 @@
+{% extends 'basemin.html' %}
+{% block title %} Buat Posting {% endblock %}
+{% block nav_item_forum %} active {% endblock %}
+{% block content %}
+
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <li class="alert alert-{{ category }}">{{ message }}</li>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+<form action="{{ url_for('add_posting') }}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Judul:</label>
+        <input type="text" name="title" id="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="text">Isi:</label>
+        <textarea name="text" id="text" cols="30" rows="10" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="attachment">Attachment:</label><br>
+        <input type="file" id="attachment" name="attachment" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</main>
+
+{% block chart %} {% endblock %}
+{% endblock %}

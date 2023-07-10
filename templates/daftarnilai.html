@@ -1,0 +1,59 @@
+{% extends 'basemin.html' %}
+{% block title %} List Nilai {% endblock %}
+{% block nav_item_quiz %} active {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div style="display: flex; align-items: center;">
+            <h1 style="margin-right: 10px;">Daftar Nilai</h1>
+    <div class="dropend">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropendMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Tools
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropendMenuButton">
+            <li><h6 class="dropdown-header">Quick Access</h6></li>
+            <li><a class="dropdown-item" href="/totxt">Save to TXT</a></li>
+            <li><a class="dropdown-item" href="/resetnilaiall">Delete All</a></li>
+        </ul>
+    </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Nilai</th>
+            <th scope="col">Waktu</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in user %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.scores }}</td>
+            <td>{{ user.finish_time }}</td>
+            <td><a href="{{ url_for('reset_score', user_id=user.id) }}" class="btn btn-danger">Reset</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% block chart %} {% endblock %}
+{% endblock %}

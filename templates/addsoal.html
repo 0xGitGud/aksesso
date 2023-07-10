@@ -1,0 +1,72 @@
+{% extends 'basemin.html' %}
+{% block title %} Tambah Soal {% endblock %}
+{% block nav_item_quiz %} active {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+        <div class="card-header" style="font-size: 50px;">
+            Tambah Soal
+        </div>
+            <form id="quickForm" action="/addsoal" method="POST" enctype="multipart/form-data"
+                  style="height: 2.5rem; font-size: 1rem;left: 20px;">
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="question" placeholder="Pertanyaan.."
+                           aria-label="Username"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="op1" placeholder="Opsi #1" aria-label="Username"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="op2" placeholder="Opsi #2" aria-label="Username"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="op3" placeholder="Opsi #3" aria-label="Username"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="op4" placeholder="Opsi #4" aria-label="Username"
+                           aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text">Correct Option:</label>
+                    <div class="form-check form-check-inline">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="corop" id="option1" value="op1">
+                        <label class="form-check-label" for="option1">Option 1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="corop" id="option2" value="op2">
+                        <label class="form-check-label" for="option2">Option 2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="corop" id="option3" value="op3">
+                        <label class="form-check-label" for="option3">Option 3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="corop" id="option4" value="op4">
+                        <label class="form-check-label" for="option4">Option 4</label>
+                    </div>
+                    <div class="input-group mb-3">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">Question Image:</label>
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div style="font-size: 30px; margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-secondary"
+                                style="width: 55rem; height: 2.5rem; font-size: 1rem;left: 20px;">Tambah Soal
+                        </button>
+                    </div>
+                </div>
+            </form>
+</div>
+
+{% block chart %} {% endblock %}
+{% endblock %}

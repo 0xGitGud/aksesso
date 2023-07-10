@@ -1,0 +1,61 @@
+{% extends 'basemin.html' %}
+{% block title %} Halaman Guru {% endblock %}
+{% block nav_item_index %} active {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row align-items-md-stretch">
+        <div class="card card-outline card-success col-md-6 p-5">
+            <div class="small-box p-5">
+                <h2>Cara Penggunaan</h2>
+                <p> Informasikan langkah-langkah penggunaan aplikasi AKSESSO yang jelas dan mudah dipahami oleh pengguna,
+baik itu untuk menambahkan materi pembelajaran, membuat quiz, maupun fitur lainnya. Sediakan
+tutorial atau panduan yang mudah diakses.</p>
+                <div class="icon">
+                    <i class="ion-android-compass"></i>
+                </div>
+                <a class="btn btn-primary stretched-link" href="/infomin">Lihat</a>
+            </div>
+        </div>
+        <div class="card card-outline card-danger col-md-6 p-5">
+            <div class="small-box p-5">
+                <h2>Forum Diskusi</h2>
+                <p>Buatlah ruang diskusi yang terbuka bagi siswa dan guru untuk berdiskusi tentang materi pembelajaran,
+memberikan masukan, dan bertukar informasi. Fasilitasi diskusi dengan aturan yang jelas dan
+memoderasi konten yang tidak pantas atau tidak relevan. </p>
+                <div class="icon">
+                    <i class="ion-android-chat"></i>
+                </div>
+                <a class="btn btn-primary stretched-link" href="/forumin">Forum</a>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-md-stretch">
+<div class="card card-outline card-primary col-md-6 p-5">
+            <div class="small-box p-5">
+                <h2>Materi Pelajaran</h2>
+                <p>Tambahkan posting materi pembelajaran dengan mudah menggunakan fitur AKSESSO yang terintegrasi dengan Flask dan
+                    SQLAlchemy. Sunting dengan cepat menggunakan fitur edit yang tersedia.</p>
+                <div class="icon">
+                    <i class="ion-easel"></i>
+                </div>
+                <a class="btn btn-primary stretched-link" href="/adminmateri">Lakukan</a>
+            </div>
+        </div>
+<div class="card card-outline card-warning col-md-6 p-5">
+            <div class="small-box p-5">
+                <h2>Rancang Quiz</h2>
+                <p>Berikan pertanyaan kepada siswa terkait dengan materi pembelajaran yang baru saja disampaikan. Dengan
+                    adanya quiz, mengasah kemampuan dan menambah wawasan mereka dengan cara yang
+                    menyenangkan. </p>
+                <div class="icon">
+                    <i class="ion-podium"></i>
+                </div>
+                <a class="btn btn-primary stretched-link" href="/adminquiz">Mulai</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block chart %} {% endblock %}
+{% endblock %}

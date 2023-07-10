@@ -1,0 +1,18 @@
+.card-body {
+  font-size: 18px;
+  white-space: pre-wrap;
+  text-align: justify;
+  padding: 80px; /* Default padding value */
+}
+
+@media screen and (max-width: 768px) {
+  .card-body {
+    padding: 50px; /* Smaller padding value for narrow screens */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-body {
+    padding: 130px; /* Larger padding value for wide screens */
+  }
+}

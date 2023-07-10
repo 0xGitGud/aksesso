@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AKSESSO | Log in</title>
+    <link rel="icon" href="../static/dist/img/LogoMaker.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../static/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      $( function() {
+      $( document ).tooltip();
+      } );
+
+
+    </script>
+</head>
+<body>
+<img class="wave" src="/static/dist/img/wave.png">
+<div class="container">
+    <div class="img">
+        <img src="/static/dist/img/bglms.png">
+    </div>
+    <div class="login-content">
+        <form action="" method="post">
+            <img src="/static/dist/img/LogoMaker.png">
+            <h2 class="title">Aksesso</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" class="form-control" placeholder="Email" {{ form.email }}
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <input type="password" class="form-control" placeholder="Password" {{ form.password }}
+                    </div>
+                </div>
+                <a href="/formRegister">Daftar Klik Disini</a>
+                <input type="submit" class="btn btn-primary btn-block" {{ form.submit }}
+    </div>
+    </form>
+</div>
+</div>
+</body>
+</html>

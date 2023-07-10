@@ -1,0 +1,45 @@
+{% extends 'basemin.html' %}
+{% block title %} Menu Quiz {% endblock %}
+{% block nav_item_quiz %} active {% endblock %}
+{% block content %}
+
+
+<div class="container mt-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+    <div class="card card-outline card-warning p-4 p-md-5 mb-4">
+        <div class="col-md-6 px-0">
+            <h3 class="display-4 fst-italic">Lihat Nilai Siswa</h3>
+            <p class="lead my-3">Evaluasi penilaian siswa dengan mudah melalui fitur ini.</p>
+            <a class="btn btn-primary" href="/listnilai" class="fw-bold">Penilaian Siswa</a>
+        </div>
+    </div>
+    <br>
+    <div class="row align-items-md-stretch">
+        <div class="card card-outline card-warning col-md-6">
+            <div class="h-100 p-5">
+                <h2>Tambah Soal</h2>
+                <p>Tambahkan soal-soal yang terkait dengan materi pembelajaran yang akan dilaksanakan sebagai evaluasi
+                    siswa terhadap proses belajar mereka.</p>
+                <a class="btn btn-primary" href="/soaladd">Tambah</a>
+            </div>
+        </div>
+        <div class="card card-outline card-warning col-md-6">
+            <div class="h-100 p-5">
+                <h2>Daftar Soal</h2>
+                <p>Setelah menambahkan soal-soal quiz maka dengan fitur ini dapat melakukan edit
+                    soal yang kurang tepat maupun hapus soal untuk mengurangi soal atau melakukan quiz
+                    dengan materi berikutnya. </p>
+                <a class="btn btn-primary" href="/listsoal">Tampilkan</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block chart %} {% endblock %}
+{% endblock %}

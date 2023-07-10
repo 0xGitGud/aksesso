@@ -1,0 +1,70 @@
+{% extends 'basemin.html' %}
+{% block title %} Tambah Materi {% endblock %}
+{% block nav_item_materi %} active {% endblock %}
+{% block content %}
+
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <li class="alert alert-{{ category }}">{{ message }}</li>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+<form action="{{ url_for('add_materi') }}" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="title">Thumbnail:</label>
+        <input id="thumbnail" type="file" name="thumbnail" class="form-control form-control-sm"
+               aria-label="Small file input example">
+        <div id="image-preview"></div>
+    </div>
+    <div class="form-group">
+        <label for="chapter">Bab: (1-20)</label>
+        <input type="number" name="chapter" id="chapter" class="form-control" min="1" max="20" maxlength="3"
+               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+    </div>
+    <div class="form-group">
+        <label for="title">Judul:</label>
+        <input type="text" name="title" id="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="text">Isi:</label>
+        <textarea name="text" id="text" cols="30" rows="10" class="form-control " required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="attachment">Attachment:</label><br>
+        <input type="file" id="attachment" name="attachment" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+</main>
+
+<script>
+    const input = document.querySelector('input[type="file"]');
+    const previewContainer = document.querySelector('#image-preview');
+
+    input.addEventListener('change', function () {
+        previewContainer.innerHTML = ''; // clear the container before updating
+        const files = Array.from(this.files);
+
+        files.forEach(file => {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', () => {
+                const img = document.createElement('img');
+                img.setAttribute('src', reader.result);
+                img.width = 300; // set the desired width
+
+                previewContainer.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        });
+    });
+
+</script>
+
+
+{% block chart %} {% endblock %}
+{% endblock %}

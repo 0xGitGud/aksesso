@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %} Quiz {% endblock %}
+{% block nav_item_quiz %} active {% endblock %}
+
+{% block head %}
+<style>
+.form-check-label {
+  font-size: 24px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="container" style="max-width: 800px;">
+    <div class="card bg-primary">
+        <div class="card-body d-flex align-items-center justify-content-center">
+            <div id="quizCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner">
+                    <form id="quizForm" action="/submit" method="POST">
+                        {% for question in questions %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <input type="hidden" name="question{{ loop.index }}" value="{{ question.id }}">
+                            {% if question.image %}
+                            <div class="text-center">
+                            <img src="{{ url_for('static', filename='thumbnail/' + question.image) }}" alt="{{ question.image }}"
+                            style="max-width: 300px; max-height: 300px; border: 1px solid black;">
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            {% endif %}
+                            <div style="font-size: 30px;">
+                                <b>Soal No. {{ loop.index }}</b>
+                                <br>
+                                <b>{{ question.question }}</b>
+                            </div>
+                            <br>
+                            <div class="form-check" style="font-size: 20px;">
+                                <input class="form-check-input" type="radio" id="op1_{{ question.id }}"
+                                       name="answer{{ loop.index }}"
+                                       value="op1" required>
+                                <label class="form-check-label" for="op1_{{ question.id }}">
+                                    {{ question.option1 }}
+                                </label>
+                            </div>
+
+                            <div class="form-check" style="font-size: 20px;">
+                                <input class="form-check-input" type="radio" id="op2_{{ question.id }}"
+                                       name="answer{{ loop.index }}"
+                                       value="op2">
+                                <label class="form-check-label" for="op2_{{ question.id }}">
+                                    {{ question.option2 }}
+                                </label>
+                            </div>
+
+                            <div class="form-check" style="font-size: 20px;">
+                                <input class="form-check-input" type="radio" id="op3_{{ question.id }}"
+                                       name="answer{{ loop.index }}"
+                                       value="op3">
+                                <label class="form-check-label" for="op3_{{ question.id }}">
+                                    {{ question.option3 }}
+                                </label>
+                            </div>
+
+                            <div class="form-check" style="font-size: 20px;">
+                                <input class="form-check-input" type="radio" id="op4_{{ question.id }}"
+                                       name="answer{{ loop.index }}"
+                                       value="op4">
+                                <label class="form-check-label" for="op4_{{ question.id }}">
+                                    {{ question.option4 }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-outline card-primary text-center">
+        <div class="card-footer" style="height: 80px">
+            <a class="carousel-control-prev" href="#quizCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true">
+          <i class="fas fa-chevron-left" style="color: blue;"></i>
+        </span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#quizCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true">
+          <i class="fas fa-chevron-right" style="color: blue;"></i>
+        </span>
+                <span class="sr-only">Next</span>
+            </a>
+            <button id="submitBtn" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    const submitBtn = document.getElementById('submitBtn');
+    const quizForm = document.getElementById('quizForm');
+
+    submitBtn.addEventListener('click', function() {
+        const selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+        if (selectedAnswers.length === {{ total_questions }}) {
+            quizForm.submit();
+        } else {
+            alert('Please attempt all questions before submitting!');
+        }
+    });
+
+</script>
+
+
+{% block chart %} {% endblock %}
+{% endblock %}
